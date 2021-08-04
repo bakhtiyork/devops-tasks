@@ -1,0 +1,35 @@
+commit c714ac8d6be83604ac1dbe1f5f8a254224cacf2b (HEAD -> refs/heads/master, refs/remotes/origin/master)
+Merge: ca6f7be c01a55d
+Author: bakhtiyork <bakhtiyor.k@gmail.com>
+Date:   Wed Aug 4 10:05:13 2021 +0500
+
+    Merge pull request #2 from bakhtiyork/dev
+    
+    Merging dev into master
+
+commit c01a55d9b73375d22c49ac7a1fc5e1be24d25919 (refs/remotes/origin/dev)
+Merge: d43a312 9187c9a
+Author: bakhtiyork <bakhtiyor.k@gmail.com>
+Date:   Wed Aug 4 10:04:27 2021 +0500
+
+    Merge pull request #1 from bakhtiyork/bakhtiyork-new_feature
+    
+    Merging bakhtiyork-new_feature into dev
+
+commit 9187c9ac26ed5031c9491fc097cc04e243876062 (refs/remotes/origin/bakhtiyork-new_feature, refs/heads/bakhtiyork-new_feature)
+Author: bakhtiyor <bakhtiyor.k@gmail.com>
+Date:   Wed Aug 4 10:02:12 2021 +0500
+
+    Third commit
+
+commit d43a312d983fbebdc9a7f0f346e236bdcf2b4fac (refs/heads/dev)
+Author: bakhtiyor <bakhtiyor.k@gmail.com>
+Date:   Wed Aug 4 10:00:48 2021 +0500
+
+    Second commit
+
+commit ca6f7beebf51e070552b4eebc4494db46104bcb8
+Author: bakhtiyor <bakhtiyor.k@gmail.com>
+Date:   Wed Aug 4 10:00:01 2021 +0500
+
+    First commit
