@@ -23,8 +23,8 @@ $ export TF_VAR_UBUNTU_AMI=ami-abc123
 ```
 
 
-  
-
+\  
+\
 > 7. EC2 CentOS should have outgoing and incoming access: ICMP, TCP/22, 80, 443, only to EC2 Ubuntu
 
 We can specify only Ubuntu host private IP address for Security Group rules:
@@ -38,7 +38,8 @@ We can specify only Ubuntu host private IP address for Security Group rules:
 ```
 
   
-  
+\
+\
 > 8. On EC2 CentOS install nginx (note. Remember about step 7, the task can be done in any way, it is not necessary to use terraform)
 > - Create a web page with the text “Hello World” and information about the current version of the operating system. This page must be visible from the  EC2 Ubuntu.
 
