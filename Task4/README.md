@@ -114,23 +114,71 @@ CMD ["node", "server.js"]
 version: '3'
 
 services:
-  web_app:
-    build: .
+  node_app:
+    build: node
     ports:
-      - 80:80
+      - 3000:3000
+    restart: unless-stopped
 
   database:
-    image: postgres
+    image: postgres 
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
   
   java_app:
-    image: jetty
+    image: jenkins
+    container_name: jenkins
     ports:
       - 8080:8080
+      - 50000:50000
+    privileged: true
+    user: root
     depends_on: database
+    restart: unless-stopped
 
 ```
 
 ### Extra
 > Use env files to configure each service.
+```yaml
+version: '3'
 
+services:
+  node_app:
+    build: node
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      DEVOPS: bakhtiyor
 
+  database:
+    image: postgres 
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+  
+  java_app:
+    image: jenkins
+    container_name: jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    privileged: true
+    user: root
+    depends_on: database
+    restart: unless-stopped
+    environment: 
+      JENKINS_OPTS: "--httpsPort=8083"
+
+```
