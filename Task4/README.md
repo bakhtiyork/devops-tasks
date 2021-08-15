@@ -106,7 +106,8 @@ version: '3'
 
 services:
   node_app:
-    build: node
+    build: ./node
+    container_name: node_app
     ports:
       - 3000:3000
     restart: unless-stopped
@@ -140,7 +141,7 @@ version: '3'
 
 services:
   node_app:
-    build: node
+    build: ./node
     ports:
       - 3000:3000
     restart: unless-stopped
