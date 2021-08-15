@@ -47,16 +47,18 @@ COPY html /usr/share/nginx/html
 ## 3.2. Add an environment variable
 > Add an environment variable "DEVOPS=<username> to your docker image
 ```Dockerfile
-FROM nginx
-COPY html /usr/share/nginx/html
+FROM node
+WORKDIR /app
+COPY server.js /app/
 ENV DEVOPS=bakhtiyork
+CMD ["node", "server.js"]
 
 ```
 
 ### Extra
 > Print environment variable with the value on a web page (if environment variable changed after container restart - the web page must be updated with a new value)
 
-Let's create simple Node server app:
+Let's create simple Node server app for the Dockerfile (3.2):
 ```JavaScript
 const http = require('http');
 
@@ -77,20 +79,14 @@ server.listen(port, hostname, () => {
 
 ```
 
-And Dockerfile for it:
-
-```Dockerfile
-FROM node
-WORKDIR /app
-COPY server.js /app/
-ENV DEVOPS=bakhtiyork
-CMD ["node", "server.js"]
-
-```
-
-
 ## 4. Push your docker image to docker hub
 > Create any description for your Docker image.
+```
+cd node
+docker build -t bakhtiyork/devops-tasks:node .
+docker push bakhtiyork/devops-tasks:node
+```
+Link - [Docker Hub](https://hub.docker.com/r/bakhtiyork/devops-tasks)
 
 
 ### Extra
@@ -174,6 +170,5 @@ services:
     depends_on: database
     restart: unless-stopped
     environment: 
-      JENKINS_OPTS: "--httpsPort=8083"
-
+      JAVA_OPTS: "-Dhudson.footerURL=http://github.com/bakhtiyork/devops-tasks"
 ```
