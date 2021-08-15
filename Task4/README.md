@@ -1,4 +1,4 @@
-# Task4: Docker
+# Docker
 
 ## 1. Install docker
 
@@ -61,15 +61,46 @@ ENV DEVOPS=bakhtiyork
 ### Extra
 > Print environment variable with the value on a web page (if environment variable changed after container restart - the web page must be updated with a new value)
 
-```Dockerfile
-FROM nginx
+Let's create simple Node server app:
+```JavaScript
+const http = require('http');
 
-COPY html /usr/share/nginx/html
+const hostname = '0.0.0.0';
+const port = process.env.PORT || 3000;
+const devops = process.env.DEVOPS || 'Not defined.';
 
-ENV DEVOPS=bakhtiyork
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end(`<p>DEVOPS=${devops}</p>`);
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}`);
+});
+
 
 ```
-TODO: complete extra task
+
+And Dockerfile for it:
+
+```Dockerfile
+FROM node
+WORKDIR /app
+COPY server.js /app/
+ENV DEVOPS=bakhtiyork
+CMD ["node", "server.js"]
+
+```
+
+
+## 4. Push your docker image to docker hub
+> Create any description for your Docker image.
+
+
+### Extra
+> Integrate your docker image and your github repository. Create an automatic deployment for each push. (The Deployment can be in the “Pending” status for 10-20 minutes. This is normal).
+
 
 
 ## 5. Create docker-compose file
@@ -87,7 +118,6 @@ services:
     build: .
     ports:
       - 80:80
-
 
   database:
     image: postgres
