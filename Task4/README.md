@@ -91,7 +91,7 @@ Link - [Docker Hub](https://hub.docker.com/r/bakhtiyork/devops-tasks)
 
 ### Extra
 > Integrate your docker image and your github repository. Create an automatic deployment for each push. (The Deployment can be in the “Pending” status for 10-20 minutes. This is normal).
-
+GitHub Actions - [workflow](https://github.com/bakhtiyork/devops-tasks/blob/master/.github/workflows/github-actions.yml)
 
 
 ## 5. Create docker-compose file
