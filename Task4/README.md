@@ -113,15 +113,6 @@ services:
       - 3000:3000
     restart: unless-stopped
 
-  database:
-    image: postgres 
-    container_name: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    restart: unless-stopped
-  
   java_app:
     image: jenkins
     container_name: jenkins
@@ -130,7 +121,16 @@ services:
       - 50000:50000
     privileged: true
     user: root
-    depends_on: database
+    depends_on: [database]
+    restart: unless-stopped
+
+  database:
+    image: postgres 
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
 ```
@@ -148,6 +148,19 @@ services:
     restart: unless-stopped
     environment:
       DEVOPS: exadel
+  
+  java_app:
+    image: jenkins
+    container_name: jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    privileged: true
+    user: root
+    depends_on: [database]
+    restart: unless-stopped
+    environment: 
+      JAVA_OPTS: "-Dhudson.footerURL=http://github.com/bakhtiyork/devops-tasks"
 
   database:
     image: postgres 
@@ -160,17 +173,4 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-  
-  java_app:
-    image: jenkins
-    container_name: jenkins
-    ports:
-      - 8080:8080
-      - 50000:50000
-    privileged: true
-    user: root
-    depends_on: database
-    restart: unless-stopped
-    environment: 
-      JAVA_OPTS: "-Dhudson.footerURL=http://github.com/bakhtiyork/devops-tasks"
 ```
