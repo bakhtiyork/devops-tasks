@@ -38,8 +38,11 @@ COPY html /usr/share/nginx/html
 > For creating docker image use clear basic images (ubuntu, centos, alpine, etc.)
 
 ```Dockerfile
-FROM ubuntu:slim
-RUN apt update && apt upgrade -y && apt install nginx -y
+FROM debian:slim
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt install nginx -y && \
+    rm -rf /var/lib/apt/lists/*
 COPY html /usr/share/nginx/html
 EXPOSE 80
 STOPSIGNAL SIGTERM
@@ -84,11 +87,13 @@ server.listen(port, hostname, () => {
 
 ## 4. Push your docker image to docker hub
 > Create any description for your Docker image.
-```
+
+```sh
 cd node
 docker build -t bakhtiyork/devops-tasks:node .
 docker push bakhtiyork/devops-tasks:node
 ```
+
 Link - [Docker Hub](https://hub.docker.com/r/bakhtiyork/devops-tasks)
 
 
