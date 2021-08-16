@@ -41,6 +41,9 @@ COPY html /usr/share/nginx/html
 FROM ubuntu:slim
 RUN apt update && apt upgrade -y && apt install nginx -y
 COPY html /usr/share/nginx/html
+EXPOSE 80
+STOPSIGNAL SIGTERM
+CMD ["nginx", "-g", "daemon off;"]
 
 ```
 
