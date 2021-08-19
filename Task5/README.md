@@ -57,7 +57,7 @@ ubuntu2 | SUCCESS => {
 ```
 
 ## Playbook
-> My First Playbook: write a playbook for installing Docker on two machines and run it.
+> 3. My First Playbook: write a playbook for installing Docker on two machines and run it.
 
 
 ```yaml
