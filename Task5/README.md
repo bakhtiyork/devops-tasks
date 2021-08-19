@@ -69,7 +69,7 @@ ubuntu2 | SUCCESS => {
   tasks:
   - name: install dependencies
     apt:  name={{ item }} state=latest update_cache=yes
-    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+    loop: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
   
   - name: Add Docker GPG apt Key
     apt_key:
@@ -82,7 +82,8 @@ ubuntu2 | SUCCESS => {
       state: present
   
   - name: Update apt and install docker-ce
-    apt: update_cache=yes name=docker-ce state=latest
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: ['docker-ce', 'docker-ce-cli', 'containerd.io']
 
 ```
 
