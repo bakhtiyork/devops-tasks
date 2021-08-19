@@ -92,7 +92,7 @@ Run it:
 ansible-playbook playbook.yml
 ```
 
-Output:
+Output (second run):
 ```
 PLAY [My First Playbook] *******************************************************
 
